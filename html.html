@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Latéral avec Sous-Menus</title>
+    <link rel="stylesheet" href="styl.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+     /* Styles pour le menu latéral avec Bootstrap */
+              .sidebar {
+                  height: 100vh;
+                  width: 250px;
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  background-color: #007bff; /* Bleu Bootstrap */
+                  color: #ffffff; /* Texte en blanc */
+                  padding: 15px;
+              }
+
+              .logo {
+                  text-align: center;
+                  margin-bottom: 20px;
+              }
+
+              .logo img {
+                  width: 100px; /* Ajustez la taille selon vos besoins */
+                  height: 100px; /* Assurez-vous que la hauteur correspond à la largeur pour un cercle parfait */
+                  border-radius: 50%; /* Rendre l'image circulaire */
+                  object-fit: cover; /* Assurez-vous que l'image couvre le cercle sans étirement */
+              }
+
+              .menu-item {
+                  display: block;
+                  padding: 10px;
+                  text-decoration: none;
+                  color: #ffffff; /* Texte en blanc */
+                  margin-bottom: 5px;
+                  font-weight: bold;
+                  border-radius: 4px; /* Coins arrondis pour une apparence meilleure */
+                  transition: background-color 0.3s ease; /* Effet de transition pour le survol */
+              }
+
+              .menu-item:hover {
+                  background-color: #0056b3; /* Bleu plus foncé pour le survol */
+              }
+
+              .submenu {
+                  display: none;
+                  margin-left: 20px;
+              }
+
+              .submenu a {
+                  display: block;
+                  padding: 10px;
+                  text-decoration: none;
+                  color: #ffffff; /* Vert vif pour les liens dans le sous-menu */
+                  border-radius: 4px; /* Coins arrondis pour les liens */
+                  transition: background-color 0.3s ease; /* Effet de transition pour le survol */
+              }
+
+              .submenu a:hover {
+                  background-color: #0056b3; /* Vert clair pour le survol */
+                  color: #000000; /* Texte noir pour une meilleure lisibilité sur le fond clair */
+              }
+
+              .content {
+                  margin-left: 270px;
+                  padding: 20px;
+                  background-color: #f8f9fa; /* Fond blanc pour la section de contenu */
+                  color: #333333; /* Texte en gris foncé pour le contraste */
+              }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            <img src="logo.png" alt="Logo de l'application" />
+        </div>
+        <a href="javascript:void(0)" class="menu-item" onclick="toggleSubmenu('submenu1')">Merchants</a>
+        <div id="submenu1" class="submenu">
+            <a href="merchants/gestion_listes.html">Gestion des listes merchants</a>
+            <a href="merchants/liste_operations.html">Liste des Opérations</a>
+            <a href="Gestion_visites/Gestion_visites.html">Gestion visites</a>
+        </div>
+        <a href="javascript:void(0)" class="menu-item" onclick="toggleSubmenu('submenu2')">Clients</a>
+        <div id="submenu2" class="submenu">
+            <a href="clients/demandes_clients.html">Demandes clients</a>
+            <a href="nouveau_compte/nouveau_compte.html">Nouveau compte Waafi</a>
+            <a href="clients/reinitialisations.html">Réinitialisations</a>
+        </div>
+        <a href="javascript:void(0)" class="menu-item" onclick="toggleSubmenu('submenu3')">RH</a>
+        <div id="submenu3" class="submenu">
+            <a href="rh/liste_personnel.html">Liste du personnel WAAFI</a>
+            <a href="rh/sous.html">Sous</a>
+        </div>
+        <a href="javascript:void(0)" class="menu-item" onclick="toggleSubmenu('submenu4')">Order Form</a>
+        <div id="submenu4" class="submenu">
+            <a href="order form/order_form.html">Order form </a>
+        </div>
+        <a href="javascript:void(0)" class="menu-item" onclick="toggleSubmenu('submenu5')">Rapport</a>
+        <div id="submenu5" class="submenu">
+            <a href="order reports/order_reports.html">Rapport Order</a>
+            <a href="rh/sous.html">Reports</a>
+        </div>
+        <a href="javascript:void(0)" class="menu-item" onclick="toggleSubmenu('submenu6')">Setting</a>
+        <div id="submenu6" class="submenu">
+            <a href="rh/liste_personnel.html">Permission</a>
+            <a href="rh/sous.html">Role</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1 class="text-center text-primary">Tableau de Bord</h1>
+        <p>
+            Bienvenue sur le tableau de bord de votre application. Ici, vous pouvez
+            avoir un aperçu de toutes les opérations importantes et des
+            statistiques.
+        </p>
+    </div>
+
+    <script>
+        function toggleSubmenu(id) {
+            var submenu = document.getElementById(id);
+            if (submenu.style.display === "block") {
+                submenu.style.display = "none";
+            } else {
+                submenu.style.display = "block";
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
